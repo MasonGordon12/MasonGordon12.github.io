@@ -5,7 +5,7 @@ body {
     background-color: #e9ecef;
     
     /* This calls the image you upload in Step 3 */
-    background-image: url('topo-bg.jpg'); 
+    background-image: url('topo-bg.jpeg'); 
     background-size: cover;
     background-attachment: fixed;
     
