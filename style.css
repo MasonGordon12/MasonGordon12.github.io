@@ -181,59 +181,38 @@ body {
     color: #555;
 }
 
-/* --- About Me Photo Grid --- */
-.about-grid {
+/* --- About Me Alternating Layout --- */
+.about-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* 50% for images, 50% for text */
     gap: 40px;
-    margin-top: 30px;
-}
-.about-column img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-.container {
-    max-width: 800px;
-    margin: 40px auto;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    align-items: center;
+    margin-bottom: 60px;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #2c3e50;
+.about-images {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between the two stacked images */
+}
+
+.about-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+.about-text h3 {
+    margin-top: 0;
+    color: #2980b9;
+    border-bottom: 2px solid #ecf0f1;
     padding-bottom: 10px;
 }
 
-h1, h2 {
-    color: #2c3e50;
-}
-
-a {
-    color: #2980b9;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.project-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.project-list li {
-    margin: 15px 0;
-    padding: 15px;
-    background: #ecf0f1;
-    border-left: 5px solid #2980b9;
-    border-radius: 4px;
+.about-text p {
+    font-size: 1.1em;
+    line-height: 1.8;
 }
 
 /* --- Project Page Styling --- */
