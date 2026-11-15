@@ -127,6 +127,17 @@ body {
     box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 }
 
+.event-figure {
+    margin: 0;
+}
+
+.event-figure figcaption {
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
 /* --- Image Zoom Effect --- */
 .zoom-figure img {
     max-width: 100%;
