@@ -136,12 +136,31 @@ body {
     transition: transform 0.3s ease; /* Makes the zoom smooth */
 }
 
-.zoom-figure img:hover {
-    transform: scale(1.4); /* Zooms in to 140% size */
-    cursor: zoom-in;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+/* --- Image Zoom Magnifier --- */
+.zoom-figure {
+    position: relative; 
+    display: inline-block;
+}
+
+.zoom-figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block; 
+}
+
+.img-magnifier-glass {
+    position: absolute;
+    border: 3px solid #2c3e50;
+    border-radius: 8px; /* Square pane with slightly rounded edges */
+    width: 250px; /* Size of the magnifier pane */
+    height: 250px;
+    display: none; /* Hidden until you hover */
+    z-index: 100;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    pointer-events: none; /* Crucial: lets the mouse interact with the map underneath */
 }
 
 .zoom-figure figcaption {
