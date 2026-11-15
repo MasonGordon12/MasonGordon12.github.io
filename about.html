@@ -24,31 +24,47 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <header>
+<header>
                 <h1>More About Me</h1>
             </header>
             
-            <p>Outside of spatial data science, my life revolves around my family, staying active, and getting outdoors.</p>
+            <p style="font-size: 1.2em; margin-bottom: 50px; border-bottom: 2px solid #2c3e50; padding-bottom: 20px;">
+                Outside of spatial data science, my life revolves around my family, staying active, and getting outdoors.
+            </p>
 
-            <div class="about-grid">
-                <!-- Left Column: Family -->
-                <div class="about-column">
-                    <h3>Family</h3>
+            <!-- Row 1: Family (Images Left, Text Right) -->
+            <div class="about-row">
+                <div class="about-images">
                     <img src="family-recent.jpg" alt="Recent Family Photo">
-                    <p>A recent photo with my family.</p>
-                    
                     <img src="family-older.jpg" alt="Older Family Photo">
-                    <p>A throwback photo of us from a few years ago.</p>
                 </div>
+                <div class="about-text">
+                    <h3>Family</h3>
+                    <p>Put your paragraph blurb about your family right here. Because it is paired next to two stacked photos, you have plenty of room to write a detailed summary without it looking too long or stretching the page layout.</p>
+                </div>
+            </div>
 
-                <!-- Right Column: Hobbies & Work -->
-                <div class="about-column">
-                    <h3>Hobbies & Work</h3>
-                    <img src="mason-frisbee.jpg" alt="Playing Frisbee">
-                    <p>When I'm not mapping, you can usually find me playing ultimate frisbee.</p>
-                    
-                    <img src="mason-work.jpg" alt="At Work">
-                    <p>In the field doing what I love.</p>
+            <!-- Row 2: Work & Research (Text Left, Images Right) -->
+            <div class="about-row">
+                <div class="about-text">
+                    <h3>Work & Undergraduate Research</h3>
+                    <p>Put your paragraph blurb about your field work and undergraduate research here. Placing the text first in the HTML automatically bumps the images to the right side of the screen.</p>
+                </div>
+                <div class="about-images">
+                    <img src="work-field.jpg" alt="Working in the field">
+                    <img src="work-research.jpg" alt="Undergraduate research">
+                </div>
+            </div>
+
+            <!-- Row 3: Frisbee (Images Left, Text Right) -->
+            <div class="about-row">
+                <div class="about-images">
+                    <img src="frisbee-1.jpg" alt="Playing ultimate frisbee">
+                    <img src="frisbee-2.jpg" alt="Playing ultimate frisbee">
+                </div>
+                <div class="about-text">
+                    <h3>Ultimate Frisbee</h3>
+                    <p>Put your paragraph blurb about your hobbies and playing ultimate frisbee here. This creates a clean, repeating pattern as the user scrolls down the page.</p>
                 </div>
             </div>
         </main>
