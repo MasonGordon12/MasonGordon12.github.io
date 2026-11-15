@@ -111,9 +111,13 @@ body {
 
 .map-row {
     display: grid;
-    grid-template-columns: 3fr 2fr; /* Gives the map more width than the photo */
+    grid-template-columns: 3fr 2fr; /* Map is larger (left), Photo is smaller (right) */
     gap: 30px;
     align-items: center;
+}
+
+.map-row.reversed {
+    grid-template-columns: 2fr 3fr; /* Photo is smaller (left), Map is larger (right) */
 }
 
 .event-photo {
