@@ -7,51 +7,68 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Portfolio</a>
-        
-        <header>
-            <h1>Oregon 2002 Biscuit Fire Regrowth Trends by Topography</h1>
-        </header>
-
-        <section class="project-skills">
-            <h2>Skills & Concepts Demonstrated</h2>
-            <ul>
-                <li><strong>Process remotely sensed imagery to address environmental questions:</strong> Evaluated 24 years of Landsat imagery to track NDVI and vegetation recovery.</li>
-                <li><strong>Identify and use appropriate algorithms for real-world projects:</strong> Conducted Linear Mixed Effects Modeling (LME) and Moran’s I tests for spatial autocorrelation.</li>
-                <li><strong>Understand how to manipulate and process spatial data:</strong> Extracted and analyzed slope, aspect, and elevation topographic variables from DEMs.</li>
-                <li>Statistical programming in R (using <code>terra</code>, <code>sf</code>, <code>nlme</code>, and <code>spdep</code> packages).</li>
-            </ul>
-        </section>
-
-        <section class="project-summary">
-            <h2>Project Summary</h2>
-            <p>As the world continues to experience unprecedented changes to climate, some areas particularly in the western United States are finding themselves to be more prone to a higher quantity and severity wildfires. One of such wildfires was the Biscuit fire located in southern Oregon and northern California which burned nearly half a million acres (499,570 acres).</p>
-            <p>This study analyzed Normalized Difference Vegetation Index (NDVI) Values across a 24-year time span using Linear Mixed Effects Modeling (LME) to quantify the impacts of topography on vegetation recovery. Results indicate that while elevation influenced baseline vegetation, the density, slope, and aspect were found to have more significant effects on vegetation regrowth. It was found that steep slopes were associated with significantly slower regrowth rates perhaps due to hydrologic runoff and soil instability, and surprisingly, south facing slopes recovered faster than north facing slopes.</p>
-        </section>
-
-        <section class="project-visuals">
-            <h2>Key Figures & Analysis</h2>
-
-            <!-- Figure 1 -->
-            <figure class="project-figure">
-                <img src="biscuit-fig1.png" alt="Map showing topographic properties of the Biscuit Fire">
-                <figcaption>Figure 1: Topographic Properties of the Biscuit Fire (2002)</figcaption>
-            </figure>
-
-            <!-- Figure 2 -->
-            <figure class="project-figure">
-                <img src="biscuit-fig2.png" alt="Time-series of Landsat imagery and NDVI">
-                <figcaption>Figure 2: Time-series of Landsat imagery and NDVI including Historical Wildfire Data</figcaption>
-            </figure>
-
-            <!-- Figure 3 -->
-            <figure class="project-figure">
-                <img src="biscuit-fig3.png" alt="Graphs displaying NDVI Recovery based on topographic variables">
-                <figcaption>Figure 3: NDVI Recovery based off topographic variables and burn severity</figcaption>
-            </figure>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h3>Navigation</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
             
-        </section>
+            <h3 style="margin-top: 30px;">Defense Projects</h3>
+            <a href="biscuit-fire.html">Biscuit Fire Regrowth</a>
+            <a href="epa-analysis.html">EPA Polluting Sites</a>
+            <a href="burn-severity.html">Wildfire Burn Severity</a>
+            <a href="aqi-mapping.html">Live Utah AQI Mapping</a>
+            <a href="lidar-sfm.html">LiDAR vs. SFM Error</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+            
+            <header>
+                <h1>Oregon 2002 Biscuit Fire Regrowth Trends by Topography</h1>
+            </header>
+
+            <section class="project-skills">
+                <h2>Skills & Concepts Demonstrated</h2>
+                <ul>
+                    <li><strong>Process remotely sensed imagery to address environmental questions:</strong> Evaluated 24 years of Landsat imagery to track NDVI and vegetation recovery.</li>
+                    <li><strong>Identify and use appropriate algorithms for real-world projects:</strong> Conducted Linear Mixed Effects Modeling (LME) and Moran’s I tests for spatial autocorrelation.</li>
+                    <li><strong>Understand how to manipulate and process spatial data:</strong> Extracted and analyzed slope, aspect, and elevation topographic variables from DEMs.</li>
+                    <li>Statistical programming in R (using <code>terra</code>, <code>sf</code>, <code>nlme</code>, and <code>spdep</code> packages).</li>
+                </ul>
+            </section>
+
+            <section class="project-summary">
+                <h2>Project Summary</h2>
+                <p>As the world continues to experience unprecedented changes to climate, some areas particularly in the western United States are finding themselves to be more prone to a higher quantity and severity wildfires. One of such wildfires was the Biscuit fire located in southern Oregon and northern California which burned nearly half a million acres (499,570 acres).</p>
+                <p>This study analyzed Normalized Difference Vegetation Index (NDVI) Values across a 24-year time span using Linear Mixed Effects Modeling (LME) to quantify the impacts of topography on vegetation recovery. Results indicate that while elevation influenced baseline vegetation, the density, slope, and aspect were found to have more significant effects on vegetation regrowth. It was found that steep slopes were associated with significantly slower regrowth rates perhaps due to hydrologic runoff and soil instability, and surprisingly, south facing slopes recovered faster than north facing slopes.</p>
+            </section>
+
+            <section class="project-visuals">
+                <h2>Key Figures & Analysis</h2>
+
+                <!-- Figure 1 -->
+                <figure class="zoom-figure">
+                    <img src="biscuit-fig1.png" alt="Map showing topographic properties of the Biscuit Fire">
+                    <figcaption>Figure 1: Topographic Properties of the Biscuit Fire (2002)</figcaption>
+                </figure>
+
+                <!-- Figure 2 -->
+                <figure class="zoom-figure">
+                    <img src="biscuit-fig2.png" alt="Time-series of Landsat imagery and NDVI">
+                    <figcaption>Figure 2: Time-series of Landsat imagery and NDVI including Historical Wildfire Data</figcaption>
+                </figure>
+
+                <!-- Figure 3 -->
+                <figure class="zoom-figure">
+                    <img src="biscuit-fig3.png" alt="Graphs displaying NDVI Recovery based on topographic variables">
+                    <figcaption>Figure 3: NDVI Recovery based off topographic variables and burn severity</figcaption>
+                </figure>
+                
+            </section>
+        </main>
     </div>
 </body>
 </html>
