@@ -74,8 +74,9 @@ body {
 /* --- Header & Profile Pic --- */
 .header-profile {
     display: flex;
+    flex-direction: column; /* This stacks your photo above your name */
     align-items: center;
-    gap: 25px;
+    text-align: center; /* Centers the text */
     border-bottom: 2px solid #2c3e50;
     padding-bottom: 20px;
     margin-bottom: 30px;
@@ -90,7 +91,7 @@ body {
 }
 
 .header-text h1 {
-    margin: 0 0 5px 0;
+    margin: 15px 0 5px 0;
     color: #2c3e50;
 }
 
@@ -100,12 +101,26 @@ body {
     font-size: 1.1em;
 }
 
-/* --- Featured Maps Grid --- */
-.featured-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+/* --- Stacked Maps Layout --- */
+.featured-maps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* Creates a nice scrolling gap between the two projects */
     margin-top: 30px;
+}
+
+.map-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr; /* Gives the map more width than the photo */
+    gap: 30px;
+    align-items: center;
+}
+
+.event-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
 }
 
 /* --- Image Zoom Effect --- */
