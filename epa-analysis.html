@@ -76,52 +76,5 @@
             </section>
         </main>
     </div>
-
-    <!-- Image Zoom Script -->
-    <script>
-    function setupMagnifier(zoomLevel) {
-        const figures = document.querySelectorAll('.zoom-figure');
-        
-        figures.forEach(figure => {
-            const img = figure.querySelector('img');
-            if (!img) return;
-
-            const glass = document.createElement("div");
-            glass.setAttribute("class", "img-magnifier-glass");
-            figure.insertBefore(glass, img); 
-
-            img.addEventListener("mouseenter", () => {
-                glass.style.display = "block";
-                glass.style.backgroundImage = "url('" + img.src + "')";
-                glass.style.backgroundRepeat = "no-repeat";
-                glass.style.backgroundSize = (img.width * zoomLevel) + "px " + (img.height * zoomLevel) + "px";
-            });
-
-            img.addEventListener("mouseleave", () => {
-                glass.style.display = "none";
-            });
-
-            img.addEventListener("mousemove", (e) => {
-                e.preventDefault();
-                
-                const rect = img.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const w = glass.offsetWidth / 2;
-                const h = glass.offsetHeight / 2;
-
-                glass.style.left = (img.offsetLeft + x - w) + "px";
-                glass.style.top = (img.offsetTop + y - h) + "px";
-                
-                glass.style.backgroundPosition = (w - (x * zoomLevel)) + "px " + (h - (y * zoomLevel)) + "px";
-            });
-        });
-    }
-
-    window.addEventListener('load', () => {
-        setupMagnifier(1.75);
-    });
-    </script>
 </body>
 </html>
