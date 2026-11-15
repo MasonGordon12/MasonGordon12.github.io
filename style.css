@@ -12,7 +12,138 @@ body {
     margin: 0;
     padding: 0;
 }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #e9ecef;
+    background-image: url('topo-bg.jpeg'); 
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
 
+/* --- New Sidebar Layout --- */
+.layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: rgba(44, 62, 80, 0.95);
+    color: white;
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #7f8c8d;
+    padding-bottom: 10px;
+}
+
+.sidebar a {
+    color: #ecf0f1;
+    text-decoration: none;
+    display: block;
+    margin: 15px 0;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.sidebar a:hover {
+    color: #3498db;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+    flex: 1;
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* --- Header & Profile Pic --- */
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #2980b9;
+}
+
+.header-text h1 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+}
+
+.header-text p {
+    margin: 0;
+    color: #555;
+    font-size: 1.1em;
+}
+
+/* --- Featured Maps Grid --- */
+.featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* --- Image Zoom Effect --- */
+.zoom-figure img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.3s ease; /* Makes the zoom smooth */
+}
+
+.zoom-figure img:hover {
+    transform: scale(1.4); /* Zooms in to 140% size */
+    cursor: zoom-in;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.zoom-figure figcaption {
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+/* --- About Me Photo Grid --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+.about-column img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
 .container {
     max-width: 800px;
     margin: 40px auto;
