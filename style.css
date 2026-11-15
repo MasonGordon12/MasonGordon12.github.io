@@ -111,13 +111,13 @@ body {
 
 .map-row {
     display: grid;
-    grid-template-columns: 3fr 2fr; /* Map is larger (left), Photo is smaller (right) */
+    grid-template-columns: 3fr 1fr; /* Map gets 75% of the width, Photo gets 25% */
     gap: 30px;
     align-items: center;
 }
 
 .map-row.reversed {
-    grid-template-columns: 2fr 3fr; /* Photo is smaller (left), Map is larger (right) */
+    grid-template-columns: 1fr 3fr; /* Photo gets 25%, Map gets 75% */
 }
 
 .event-photo {
