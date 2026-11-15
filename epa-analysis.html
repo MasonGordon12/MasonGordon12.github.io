@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPA Polluting Sites - Mason Gordon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h3>Navigation</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            
+            <h3 style="margin-top: 30px;">Defense Projects</h3>
+            <a href="biscuit-fire.html">Biscuit Fire Regrowth</a>
+            <a href="epa-analysis.html">EPA Polluting Sites</a>
+            <a href="burn-severity.html">Wildfire Burn Severity</a>
+            <a href="aqi-mapping.html">Live Utah AQI Mapping</a>
+            <a href="lidar-sfm.html">LiDAR vs. SFM Error</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+            
+            <header>
+                <h1>Using Open-Source EPA and UDEQ Data to Analyze Polluting Sites</h1>
+            </header>
+
+            <section class="project-skills">
+                <h2>Skills & Concepts Demonstrated</h2>
+                <ul>
+                    <li><strong>Use appropriate database and similar technology for storing and querying spatial data:</strong> Built Entity-Relationship (ER) models and utilized PostgreSQL and PostGIS to organize and query complex spatial datasets.</li>
+                    <li><strong>Identify and access suitable data sources for spatial projects:</strong> Sourced, cleaned, and managed disjointed CSV data from open-source EPA databases and the Utah Department of Environmental Quality (UDEQ).</li>
+                    <li><strong>Understand how to manipulate and process spatial data:</strong> Conducted spatial joins and buffer analysis to evaluate contaminant concentrations in proximity to specific pollution sites.</li>
+                    <li>Database management (PGadmin, SQL) and spatial visualization (QGIS, R).</li>
+                </ul>
+            </section>
+
+            <section class="project-summary">
+                <h2>Project Summary</h2>
+                <p>Utah has a long, storied battle with air quality. The natural shape of the Salt Lake Valley creates a bowl-like effect, making it difficult for air to circulate and resulting in the buildup of harmful pollutants. While recent milestones—such as Salt Lake City and Provo meeting the EPA's PM2.5 24-hour targets in 2025—show massive progress, understanding the spatial distribution of lingering pollution sources remains critical for public health.</p>
+                <p>This project leverages relational databases to manage massive amounts of air quality data. By downloading daily contaminant CSVs from the EPA and cross-referencing them with UDEQ pollution site data (including CERCLIS sites, brownfields, and active oil and gas wells), a comprehensive PostgreSQL/PostGIS database was established. This data structure allowed for in-depth spatial analysis to determine if proximity to varying pollution sites had a statistically observable effect on the Air Quality Index (AQI) recorded at nearby monitoring stations.</p>
+            </section>
+
+            <section class="project-visuals">
+                <h2>Key Figures & Analysis</h2>
+
+                <!-- Figure 1 -->
+                <figure class="zoom-figure">
+                    <img src="epa-fig1.png" alt="ER and Relational Model Diagrams">
+                    <figcaption>Figure 1: Entity-Relationship (ER) and Relational Model Diagrams designed to organize contaminant and monitoring station data.</figcaption>
+                </figure>
+
+                <!-- Figure 2 -->
+                <figure class="zoom-figure">
+                    <img src="epa-fig2.png" alt="Map of Air Monitoring Sites and Pollution Sites">
+                    <figcaption>Figure 2: Geographic distribution of Air Monitoring Stations alongside CERCLIS, Brownfield, and Oil/Gas pollution sites in Utah.</figcaption>
+                </figure>
+
+                <!-- Figure 3 -->
+                <figure class="zoom-figure">
+                    <img src="epa-fig3.png" alt="Daily Maximum AQI Value By County">
+                    <figcaption>Figure 3: Daily Maximum AQI Value by County (2024), demonstrating areas with the highest exposure risk.</figcaption>
+                </figure>
+
+                <!-- Figure 4 -->
+                <figure class="zoom-figure">
+                    <img src="epa-fig4.png" alt="Distribution of Pollutant Concentrations by Buffer Distance">
+                    <figcaption>Figure 4: Box plot distributions of pollutant concentrations based on station proximity to pollution sites (0.5, 1, 5, and 10-mile buffers).</figcaption>
+                </figure>
+                
+            </section>
+        </main>
+    </div>
+
+    <!-- Image Zoom Script -->
+    <script>
+    function setupMagnifier(zoomLevel) {
+        const figures = document.querySelectorAll('.zoom-figure');
+        
+        figures.forEach(figure => {
+            const img = figure.querySelector('img');
+            if (!img) return;
+
+            const glass = document.createElement("div");
+            glass.setAttribute("class", "img-magnifier-glass");
+            figure.insertBefore(glass, img); 
+
+            img.addEventListener("mouseenter", () => {
+                glass.style.display = "block";
+                glass.style.backgroundImage = "url('" + img.src + "')";
+                glass.style.backgroundRepeat = "no-repeat";
+                glass.style.backgroundSize = (img.width * zoomLevel) + "px " + (img.height * zoomLevel) + "px";
+            });
+
+            img.addEventListener("mouseleave", () => {
+                glass.style.display = "none";
+            });
+
+            img.addEventListener("mousemove", (e) => {
+                e.preventDefault();
+                
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const w = glass.offsetWidth / 2;
+                const h = glass.offsetHeight / 2;
+
+                glass.style.left = (img.offsetLeft + x - w) + "px";
+                glass.style.top = (img.offsetTop + y - h) + "px";
+                
+                glass.style.backgroundPosition = (w - (x * zoomLevel)) + "px " + (h - (y * zoomLevel)) + "px";
+            });
+        });
+    }
+
+    window.addEventListener('load', () => {
+        setupMagnifier(1.75);
+    });
+    </script>
+</body>
+</html>
