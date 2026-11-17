@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiDAR vs. SfM Error - Mason Gordon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h3>Navigation</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            
+            <h3 style="margin-top: 30px;">Defense Projects</h3>
+            <a href="biscuit-fire.html">Biscuit Fire Regrowth</a>
+            <a href="epa-analysis.html">EPA Polluting Sites</a>
+            <a href="burn-severity.html">Wildfire Burn Severity</a>
+            <a href="aqi-mapping.html">Live Utah AQI Mapping</a>
+            <a href="lidar-sfm.html">LiDAR vs. SFM Error</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+            
+            <header>
+                <h1>Comparison of Structure from Motion Accuracy in Vegetated vs. Non-Vegetated Areas</h1>
+            </header>
+
+            <section class="project-skills">
+                <h2>Skills & Concepts Demonstrated</h2>
+                <ul>
+                    <li><strong>Understand how to manipulate and process spatial data:</strong> Processed raw point clouds, performed precise DEM differencing, and managed high-resolution raster datasets to quantify elevation error.</li>
+                    <li><strong>Process remotely sensed imagery to address environmental questions:</strong> Contrasted active (LiDAR) and passive (Structure from Motion) remote sensing limitations by flying DJI drones, collecting GCPs via RTK, and deriving 3D models in Agisoft Metashape.</li>
+                    <li>Data analysis in ArcGIS Pro (LAS Dataset to Raster, Zonal Statistics) and statistical programming in R for precision/error distribution mapping.</li>
+                </ul>
+            </section>
+
+            <section class="project-summary">
+                <h2>Project Summary</h2>
+                <p>Reliable Digital Elevation Model (DEM) generation is essential for modern earth science research. Currently, the two leading methods for deriving these models are Light Detection and Ranging (LiDAR) and Structure from Motion (SfM) photogrammetry. While SfM is significantly cheaper and more accessible, relying only on a standard optical camera, it is physically limited to capturing surface objects (generating a Digital Surface Model) and struggles to penetrate vegetation. Conversely, LiDAR emits active light pulses that penetrate through gaps in the canopy to reach the bare earth beneath, creating highly accurate Digital Terrain Models (DTMs).</p>
+                <p>This project quantified the limitations of SfM by comparing it against LiDAR "ground truth" across both flat and vegetated terrains near the Bonderman Rio Mesa Field Station. Drone flights were executed, Ground Control Points (GCPs) were established using RTK receivers, and highly detailed DEMs were generated from both methods. By performing DEM differencing, the analysis proved that while SfM is highly precise and consistent over flat surfaces, its accuracy deteriorates significantly in vegetated areas, demonstrating extreme outliers and a consistent elevation discrepancy of nearly -1.86 meters.</p>
+            </section>
+
+            <section class="project-visuals">
+                <h2>Key Figures & Analysis</h2>
+
+                <!-- Figure 1 -->
+                <figure class="zoom-figure">
+                    <img src="lidar-fig1.png" alt="Ortho-mosaics and hillshades of flat and vegetated sites by LiDAR and SfM methods">
+                    <figcaption>Figure 1: Ortho-mosaics and hillshades of the flat and vegetated sites highlighting textural differences derived by LiDAR and SfM methods.</figcaption>
+                </figure>
+
+                <!-- Figure 2 -->
+                <figure class="zoom-figure">
+                    <img src="lidar-fig2.png" alt="Aspect-Slope of flat and vegetated sites via LiDAR and SfM">
+                    <figcaption>Figure 2: Aspect-Slope visualization of both the flat and vegetated sites comparing active vs. passive collection methods.</figcaption>
+                </figure>
+
+                <!-- Figure 3 -->
+                <figure class="zoom-figure">
+                    <img src="lidar-fig3.png" alt="Difference maps subtracting the SfM DEM from a LiDAR DEM">
+                    <figcaption>Figure 3: DEM Differencing maps. Flat sites showed high precision, while vegetated sites demonstrated clear, consistent elevation discrepancies.</figcaption>
+                </figure>
+
+                <!-- Figure 4 -->
+                <figure class="zoom-figure">
+                    <img src="lidar-fig4.png" alt="Error distribution and spread">
+                    <figcaption>Figure 4: Error distribution (left) and error spread (right), demonstrating the high precision of SfM on flat areas versus the instability over vegetation.</figcaption>
+                </figure>
+                
+                <!-- Moved PDF Button -->
+                <div class="button-container">
+                    <a href="lidar-sfm-report.pdf" class="pdf-button" target="_blank">📄 Read Full Project Report (PDF)</a>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Click-Toggle Magnifier Script -->
+    <script>
+    function setupClickMagnifier(defaultZoom) {
+        const figures = document.querySelectorAll('.zoom-figure');
+        
+        figures.forEach(figure => {
+            const img = figure.querySelector('img');
+            if (!img) return;
+
+            const glass = document.createElement("div");
+            glass.setAttribute("class", "img-magnifier-glass");
+            figure.insertBefore(glass, img); 
+
+            let isActive = false;
+            let currentZoom = defaultZoom;
+
+            // 1. Toggle magnifier on click
+            img.addEventListener('click', (e) => {
+                isActive = !isActive;
+                if (isActive) {
+                    glass.style.display = "block";
+                    glass.style.backgroundImage = "url('" + img.src + "')";
+                    glass.style.backgroundRepeat = "no-repeat";
+                    updateGlass(e); // Position it immediately under the mouse
+                    img.style.cursor = "zoom-out"; // Change cursor to indicate click-to-close
+                } else {
+                    glass.style.display = "none";
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 2. Track mouse movement
+            img.addEventListener("mousemove", (e) => {
+                if (!isActive) return;
+                e.preventDefault();
+                updateGlass(e);
+            });
+
+            // 3. Turn off if mouse leaves the image entirely
+            img.addEventListener("mouseleave", () => {
+                if (isActive) {
+                    glass.style.display = "none";
+                    isActive = false;
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 4. Use scroll wheel to zoom in and out of the pane
+            img.addEventListener("wheel", (e) => {
+                if (!isActive) return;
+                e.preventDefault(); // Stop the webpage from scrolling
+                
+                const zoomSpeed = 0.15;
+                if (e.deltaY < 0) {
+                    currentZoom += zoomSpeed; // Scroll up zooms in
+                } else {
+                    currentZoom -= zoomSpeed; // Scroll down zooms out
+                }
+                
+                // Keep the zoom between 1x and 5x
+                currentZoom = Math.max(1, Math.min(currentZoom, 5)); 
+                updateGlass(e);
+            });
+
+            // Helper function to calculate position and background size
+            function updateGlass(e) {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const w = glass.offsetWidth / 2;
+                const h = glass.offsetHeight / 2;
+
+                glass.style.left = (img.offsetLeft + x - w) + "px";
+                glass.style.top = (img.offsetTop + y - h) + "px";
+                
+                glass.style.backgroundSize = (img.width * currentZoom) + "px " + (img.height * currentZoom) + "px";
+                glass.style.backgroundPosition = (w - (x * currentZoom)) + "px " + (h - (y * currentZoom)) + "px";
+            }
+        });
+    }
+
+    // Run the setup after the page fully loads
+    window.addEventListener('load', () => {
+        setupClickMagnifier(1.75); 
+    });
+    </script>
+</body>
+</html>
