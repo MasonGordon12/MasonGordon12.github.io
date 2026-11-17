@@ -67,49 +67,91 @@
             </section>
         </main>
     </div>
-<!-- Click-to-Zoom Lightbox Script -->
+<!-- Click-Toggle Magnifier Script -->
     <script>
-    // 1. Create the modal HTML and add it to the page
-    const modalHTML = `
-        <div id="zoom-modal">
-            <img id="zoom-modal-img" src="">
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    function setupClickMagnifier(defaultZoom) {
+        const figures = document.querySelectorAll('.zoom-figure');
+        
+        figures.forEach(figure => {
+            const img = figure.querySelector('img');
+            if (!img) return;
 
-    const modal = document.getElementById('zoom-modal');
-    const modalImg = document.getElementById('zoom-modal-img');
-    let currentScale = 1;
+            const glass = document.createElement("div");
+            glass.setAttribute("class", "img-magnifier-glass");
+            figure.insertBefore(glass, img); 
 
-    // 2. Open the modal when any map is clicked
-    document.querySelectorAll('.zoom-figure img').forEach(img => {
-        img.addEventListener('click', function() {
-            modal.style.display = 'flex';
-            modalImg.src = this.src;
-            currentScale = 1; // Reset zoom level every time a new map is opened
-            modalImg.style.transform = `scale(${currentScale})`;
+            let isActive = false;
+            let currentZoom = defaultZoom;
+
+            // 1. Toggle magnifier on click
+            img.addEventListener('click', (e) => {
+                isActive = !isActive;
+                if (isActive) {
+                    glass.style.display = "block";
+                    glass.style.backgroundImage = "url('" + img.src + "')";
+                    glass.style.backgroundRepeat = "no-repeat";
+                    updateGlass(e); // Position it immediately under the mouse
+                    img.style.cursor = "zoom-out"; // Change cursor to indicate click-to-close
+                } else {
+                    glass.style.display = "none";
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 2. Track mouse movement
+            img.addEventListener("mousemove", (e) => {
+                if (!isActive) return;
+                e.preventDefault();
+                updateGlass(e);
+            });
+
+            // 3. Turn off if mouse leaves the image entirely
+            img.addEventListener("mouseleave", () => {
+                if (isActive) {
+                    glass.style.display = "none";
+                    isActive = false;
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 4. Use scroll wheel to zoom in and out of the pane
+            img.addEventListener("wheel", (e) => {
+                if (!isActive) return;
+                e.preventDefault(); // Stop the webpage from scrolling
+                
+                const zoomSpeed = 0.15;
+                if (e.deltaY < 0) {
+                    currentZoom += zoomSpeed; // Scroll up zooms in
+                } else {
+                    currentZoom -= zoomSpeed; // Scroll down zooms out
+                }
+                
+                // Keep the zoom between 1x and 5x
+                currentZoom = Math.max(1, Math.min(currentZoom, 5)); 
+                updateGlass(e);
+            });
+
+            // Helper function to calculate position and background size
+            function updateGlass(e) {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const w = glass.offsetWidth / 2;
+                const h = glass.offsetHeight / 2;
+
+                glass.style.left = (img.offsetLeft + x - w) + "px";
+                glass.style.top = (img.offsetTop + y - h) + "px";
+                
+                glass.style.backgroundSize = (img.width * currentZoom) + "px " + (img.height * currentZoom) + "px";
+                glass.style.backgroundPosition = (w - (x * currentZoom)) + "px " + (h - (y * currentZoom)) + "px";
+            }
         });
-    });
+    }
 
-    // 3. Close the modal when clicked anywhere
-    modal.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-
-    // 4. Use the scroll wheel to zoom in and out
-    modal.addEventListener('wheel', function(e) {
-        e.preventDefault(); // Stop the background page from scrolling
-        
-        const zoomSpeed = 0.1;
-        if (e.deltaY < 0) {
-            currentScale += zoomSpeed; // Scrolling up zooms in
-        } else {
-            currentScale -= zoomSpeed; // Scrolling down zooms out
-        }
-        
-        // Prevent zooming too far in or out (0.5x minimum, 4x maximum)
-        currentScale = Math.max(0.5, Math.min(currentScale, 4));
-        modalImg.style.transform = `scale(${currentScale})`;
+    // Run the setup after the page fully loads
+    window.addEventListener('load', () => {
+        setupClickMagnifier(1.75); 
     });
     </script>
 </body>
