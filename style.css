@@ -195,7 +195,7 @@ body {
     z-index: 100;
     background-color: white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    pointer-events: none; /* Crucial: passes clicks and scrolls to the image underneath */
+    pointer-events: none; /* Crucial: lets your mouse click through to the image */
 }
 
 .zoom-figure figcaption {
@@ -204,7 +204,6 @@ body {
     font-style: italic;
     color: #555;
 }
-
 /* --- About Me Alternating Layout --- */
 .about-row {
     display: grid;
