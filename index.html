@@ -67,59 +67,52 @@
             </section>
         </main>
     </div>
-    <!-- Add this right before the closing body tag -->
+<!-- Click-to-Zoom Lightbox Script -->
     <script>
-    function setupMagnifier(zoomLevel) {
-        const figures = document.querySelectorAll('.zoom-figure');
-        
-        figures.forEach(figure => {
-            const img = figure.querySelector('img');
-            if (!img) return;
+    // 1. Create the modal HTML and add it to the page
+    const modalHTML = `
+        <div id="zoom-modal">
+            <img id="zoom-modal-img" src="">
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-            // Create the square magnifying pane
-            const glass = document.createElement("div");
-            glass.setAttribute("class", "img-magnifier-glass");
-            figure.insertBefore(glass, img); 
+    const modal = document.getElementById('zoom-modal');
+    const modalImg = document.getElementById('zoom-modal-img');
+    let currentScale = 1;
 
-            // When mouse enters the image, show the glass pane
-            img.addEventListener("mouseenter", () => {
-                glass.style.display = "block";
-                glass.style.backgroundImage = "url('" + img.src + "')";
-                glass.style.backgroundRepeat = "no-repeat";
-                glass.style.backgroundSize = (img.width * zoomLevel) + "px " + (img.height * zoomLevel) + "px";
-            });
-
-            // When mouse leaves the image, hide the glass pane
-            img.addEventListener("mouseleave", () => {
-                glass.style.display = "none";
-            });
-
-            // When mouse moves, update the pane's position and the zoomed background
-            img.addEventListener("mousemove", (e) => {
-                e.preventDefault();
-                
-                // Get mouse coordinates relative to the image
-                const rect = img.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const w = glass.offsetWidth / 2;
-                const h = glass.offsetHeight / 2;
-
-                // Move the glass to follow the mouse
-                glass.style.left = (img.offsetLeft + x - w) + "px";
-                glass.style.top = (img.offsetTop + y - h) + "px";
-                
-                // Shift the background image so the zoomed part aligns with the mouse
-                glass.style.backgroundPosition = (w - (x * zoomLevel)) + "px " + (h - (y * zoomLevel)) + "px";
-            });
+    // 2. Open the modal when any map is clicked
+    document.querySelectorAll('.zoom-figure img').forEach(img => {
+        img.addEventListener('click', function() {
+            modal.style.display = 'flex';
+            modalImg.src = this.src;
+            currentScale = 1; // Reset zoom level every time a new map is opened
+            modalImg.style.transform = `scale(${currentScale})`;
         });
-    }
+    });
 
-    // Run the setup after the page fully loads
-    window.addEventListener('load', () => {
-        setupMagnifier(1.75); // Change 2.5 to increase or decrease the zoom multiplier
+    // 3. Close the modal when clicked anywhere
+    modal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // 4. Use the scroll wheel to zoom in and out
+    modal.addEventListener('wheel', function(e) {
+        e.preventDefault(); // Stop the background page from scrolling
+        
+        const zoomSpeed = 0.1;
+        if (e.deltaY < 0) {
+            currentScale += zoomSpeed; // Scrolling up zooms in
+        } else {
+            currentScale -= zoomSpeed; // Scrolling down zooms out
+        }
+        
+        // Prevent zooming too far in or out (0.5x minimum, 4x maximum)
+        currentScale = Math.max(0.5, Math.min(currentScale, 4));
+        modalImg.style.transform = `scale(${currentScale})`;
     });
     </script>
+</body>
+</html>
 </body>
 </html>
