@@ -63,7 +63,7 @@ body {
 /* --- Main Content Area --- */
 .main-content {
     flex: 1;
-    max-width: 900px;
+    max-width: 1400px;
     margin: 40px auto;
     background: rgba(255, 255, 255, 0.95);
     padding: 40px;
