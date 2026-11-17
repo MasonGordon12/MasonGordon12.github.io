@@ -326,3 +326,35 @@ body {
     background-color: #1c5980;
     text-decoration: none;
 }
+
+/* --- Mobile Optimization --- */
+@media screen and (max-width: 768px) {
+    .layout-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+        width: 100%;
+    }
+
+    /* Stack alternating map rows on the homepage */
+    .map-row, .map-row.reversed {
+        flex-direction: column;
+    }
+
+    /* Adjust the magnifying pane for touch screens */
+    .img-magnifier-glass {
+        width: 150px; 
+        height: 150px;
+    }
+}
