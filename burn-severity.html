@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildfire Burn Severity - Mason Gordon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h3>Navigation</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            
+            <h3 style="margin-top: 30px;">Defense Projects</h3>
+            <a href="biscuit-fire.html">Biscuit Fire Regrowth</a>
+            <a href="epa-analysis.html">EPA Polluting Sites</a>
+            <a href="burn-severity.html">Wildfire Burn Severity</a>
+            <a href="aqi-mapping.html">Live Utah AQI Mapping</a>
+            <a href="lidar-sfm.html">LiDAR vs. SFM Error</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+            
+            <header>
+                <h1>Predicting Wildfire Burn Severity Using Machine Learning</h1>
+            </header>
+
+            <section class="project-skills">
+                <h2>Skills & Concepts Demonstrated</h2>
+                <ul>
+                    <li><strong>Apply spatial analytical methods, including machine learning:</strong> Trained and evaluated multiple machine learning models, showcasing Geographic Random Forest (GRF) models to classify and predict burn severity.</li>
+                    <li><strong>Process remotely sensed imagery to address environmental questions:</strong> Processed Landsat imagery to calculate Normalized Difference Vegetation Index (NDVI) and utilized differenced Normalized Burn Ratio (dNBR) to quantify pre-fire fuel loads and post-fire burn severity.</li>
+                    <li><strong>Understand how to manipulate and process spatial data:</strong> Extracted and processed topographic variables (elevation, slope, aspect) from 30-meter Digital Elevation Models (DEMs).</li>
+                    <li>Sourced open-access data from EarthExplorer, OpenTopography, and the Monitoring Trends in Burn Severity (MTBS) dataset.</li>
+                </ul>
+            </section>
+
+            <section class="project-summary">
+                <h2>Project Summary</h2>
+                <p>As the western United States faces a higher quantity and severity of wildfires due to a changing climate, land managers and emergency response teams need better tools to predict where a fire will have its most devastating impacts. A reliable prediction model helps allocate critical time and resources effectively. This study focuses on the historic 2002 Biscuit Fire in southern Oregon and northern California, which burned nearly half a million acres across a highly diverse topographic landscape.</p>
+                <p>The goal of this project was to test multiple machine learning model types to find the most effective combination of predictor variables (topography and fuel load) for classifying burn severity. Using Landsat imagery to derive NDVI (as a proxy for vegetation/fuel) and DEMs to derive slope, aspect, and elevation, these inputs were mapped against known burn severities (dNBR) from the MTBS dataset. By iterating through various models, the study demonstrates how advanced spatial algorithms, particularly Geographic Random Forest models, significantly improve classification accuracy for complex environmental phenomena.</p>
+            </section>
+
+            <section class="project-visuals">
+                <h2>Key Figures & Analysis</h2>
+
+                <!-- Figure 1 -->
+                <figure class="zoom-figure">
+                    <img src="burn-fig1.png" alt="Pre-processing for predictor variables">
+                    <figcaption>Figure 1: Result of data pre-processing for predictor variables including NDVI, elevation, slope, and aspect.</figcaption>
+                </figure>
+
+                <!-- Figure 2 -->
+                <figure class="zoom-figure">
+                    <img src="burn-fig2.png" alt="Updated dNBR target variable">
+                    <figcaption>Figure 2: Updated dNBR target variable using the optimized 4-class classification system based on USGS standards.</figcaption>
+                </figure>
+
+                <!-- Figure 3 -->
+                <figure class="zoom-figure">
+                    <img src="burn-fig3.png" alt="Comparison of Trained Models">
+                    <figcaption>Figure 3: Comparison of the six trained models, displaying the significant progression in accuracy achieved by the Geographic Random Forest (60%).</figcaption>
+                </figure>
+
+                <!-- Figure 4 -->
+                <figure class="zoom-figure">
+                    <img src="burn-fig4.png" alt="Variable Importance Comparison">
+                    <figcaption>Figure 4: Comparison of variable importance between the baseline GRF and supercharged GRF models.</figcaption>
+                </figure>
+                
+                <!-- PDF Download Button -->
+                <div class="button-container">
+                    <a href="burn-severity-report.pdf" class="pdf-button" target="_blank">📄 Read Full Project Report (PDF)</a>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Click-Toggle Magnifier Script -->
+    <script>
+    function setupClickMagnifier(defaultZoom) {
+        const figures = document.querySelectorAll('.zoom-figure');
+        
+        figures.forEach(figure => {
+            const img = figure.querySelector('img');
+            if (!img) return;
+
+            const glass = document.createElement("div");
+            glass.setAttribute("class", "img-magnifier-glass");
+            figure.insertBefore(glass, img); 
+
+            let isActive = false;
+            let currentZoom = defaultZoom;
+
+            // 1. Toggle magnifier on click
+            img.addEventListener('click', (e) => {
+                isActive = !isActive;
+                if (isActive) {
+                    glass.style.display = "block";
+                    glass.style.backgroundImage = "url('" + img.src + "')";
+                    glass.style.backgroundRepeat = "no-repeat";
+                    updateGlass(e); // Position it immediately under the mouse
+                    img.style.cursor = "zoom-out"; // Change cursor to indicate click-to-close
+                } else {
+                    glass.style.display = "none";
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 2. Track mouse movement
+            img.addEventListener("mousemove", (e) => {
+                if (!isActive) return;
+                e.preventDefault();
+                updateGlass(e);
+            });
+
+            // 3. Turn off if mouse leaves the image entirely
+            img.addEventListener("mouseleave", () => {
+                if (isActive) {
+                    glass.style.display = "none";
+                    isActive = false;
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 4. Use scroll wheel to zoom in and out of the pane
+            img.addEventListener("wheel", (e) => {
+                if (!isActive) return;
+                e.preventDefault(); // Stop the webpage from scrolling
+                
+                const zoomSpeed = 0.15; // Change this to adjust scroll sensitivity
+                if (e.deltaY < 0) {
+                    currentZoom += zoomSpeed; // Scroll up zooms in
+                } else {
+                    currentZoom -= zoomSpeed; // Scroll down zooms out
+                }
+                
+                // Keep the zoom between 1x and 5x
+                currentZoom = Math.max(1, Math.min(currentZoom, 5)); 
+                updateGlass(e);
+            });
+
+            // Helper function to calculate position and background size
+            function updateGlass(e) {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const w = glass.offsetWidth / 2;
+                const h = glass.offsetHeight / 2;
+
+                glass.style.left = (img.offsetLeft + x - w) + "px";
+                glass.style.top = (img.offsetTop + y - h) + "px";
+                
+                glass.style.backgroundSize = (img.width * currentZoom) + "px " + (img.height * currentZoom) + "px";
+                glass.style.backgroundPosition = (w - (x * currentZoom)) + "px " + (h - (y * currentZoom)) + "px";
+            }
+        });
+    }
+
+    // Run the setup after the page fully loads
+    window.addEventListener('load', () => {
+        setupClickMagnifier(1.75); 
+    });
+    </script>
+</body>
+</html>
