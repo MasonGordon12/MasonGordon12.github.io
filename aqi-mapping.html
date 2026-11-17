@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Utah AQI Mapping - Mason Gordon</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h3>Navigation</h3>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            
+            <h3 style="margin-top: 30px;">Defense Projects</h3>
+            <a href="biscuit-fire.html">Biscuit Fire Regrowth</a>
+            <a href="epa-analysis.html">EPA Polluting Sites</a>
+            <a href="burn-severity.html">Wildfire Burn Severity</a>
+            <a href="aqi-mapping.html">Live Utah AQI Mapping</a>
+            <a href="lidar-sfm.html">LiDAR vs. SFM Error</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <a href="index.html" class="back-link">← Back to Portfolio</a>
+            
+            <header>
+                <h1>Live Utah Air Quality Mapping Dashboard</h1>
+            </header>
+
+            <section class="project-skills">
+                <h2>Skills & Concepts Demonstrated</h2>
+                <ul>
+                    <li><strong>Communicate spatial data using appropriate visualization methods:</strong> Designed and deployed a live ESRI dashboard that translates complex air quality statistics into accessible public health information using EPA hazard color schemes.</li>
+                    <li><strong>Identify and use appropriate algorithms for real-world projects:</strong> Developed automated Python scripts (utilizing the ArcGIS API for Python) to extract API data and generate a spatial interpolation surface across the Wasatch urban corridor.</li>
+                    <li><strong>Employ responsible approaches to data science:</strong> Successfully navigated API call limitations and automated the data pipeline via GitHub Actions and OAuth 2.0, adhering to FAIR data practices by making the resulting web layers publicly accessible.</li>
+                </ul>
+            </section>
+
+            <section class="project-summary">
+                <h2>Project Summary</h2>
+                <p>Utah has long faced atmospheric pollution challenges due to its complex topography, specifically the bowl-like effect of the Salt Lake Valley which traps contaminants. As the state makes strides toward meaningful changes in air quality—such as Salt Lake City recently meeting the 2006 PM2.5 24-hour targets—having a live, accessible way for citizens to monitor the Air Quality Index (AQI) remains critical for public health.</p>
+                <p>This project involved building a fully automated, live air quality dashboard. By utilizing the IQAir API and the EPA's Air Quality System (AQS) data from the ESRI Living Atlas, Python scripts were developed to extract current data, perform spatial interpolation across the urban corridor, and update ArcGIS Online feature layers. To bypass institutional server limitations, these scripts were securely deployed via GitHub Actions using OAuth 2.0, running on a continuous schedule to feed the interactive dashboard below.</p>
+            </section>
+
+            <section class="project-visuals">
+                <h2>Live Interactive Dashboard</h2>
+                <p style="margin-bottom: 20px; font-style: italic; color: #555;">The dashboard below is live. You can click on any of the cities, zoom into the urban corridor to view the interpolated AQI surface, and review the top 5 most and least impacted areas.</p>
+                
+                <!-- Live ESRI Dashboard Embed -->
+                <div class="iframe-container" style="margin-bottom: 40px;">
+                    <iframe 
+                        src="https://uofu.maps.arcgis.com/apps/dashboards/3fbe37b84852407cbd00bd2327a1d309" 
+                        width="100%" 
+                        height="700px" 
+                        frameborder="0" 
+                        style="border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    </iframe>
+                </div>
+
+                <h2>Static Figures</h2>
+
+                <!-- Figure 1 -->
+                <figure class="zoom-figure">
+                    <img src="aqi-fig1.png" alt="Dashboard in time of good air quality">
+                    <figcaption>Figure 1: Dashboard layout operating during a time of good air quality across the state.</figcaption>
+                </figure>
+
+                <!-- Figure 2 -->
+                <figure class="zoom-figure">
+                    <img src="aqi-fig2.png" alt="Dashboard in time of poor or varying air quality">
+                    <figcaption>Figure 2: Dashboard operating during a time of poor or varying air quality, highlighting the dynamic statistical lists and charts.</figcaption>
+                </figure>
+                
+                <!-- Moved PDF Button -->
+                <div class="button-container">
+                    <a href="aqi-mapping-report.pdf" class="pdf-button" target="_blank">📄 Read Full Project Report (PDF)</a>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Click-Toggle Magnifier Script -->
+    <script>
+    function setupClickMagnifier(defaultZoom) {
+        const figures = document.querySelectorAll('.zoom-figure');
+        
+        figures.forEach(figure => {
+            const img = figure.querySelector('img');
+            if (!img) return;
+
+            const glass = document.createElement("div");
+            glass.setAttribute("class", "img-magnifier-glass");
+            figure.insertBefore(glass, img); 
+
+            let isActive = false;
+            let currentZoom = defaultZoom;
+
+            // 1. Toggle magnifier on click
+            img.addEventListener('click', (e) => {
+                isActive = !isActive;
+                if (isActive) {
+                    glass.style.display = "block";
+                    glass.style.backgroundImage = "url('" + img.src + "')";
+                    glass.style.backgroundRepeat = "no-repeat";
+                    updateGlass(e); // Position it immediately under the mouse
+                    img.style.cursor = "zoom-out"; // Change cursor to indicate click-to-close
+                } else {
+                    glass.style.display = "none";
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 2. Track mouse movement
+            img.addEventListener("mousemove", (e) => {
+                if (!isActive) return;
+                e.preventDefault();
+                updateGlass(e);
+            });
+
+            // 3. Turn off if mouse leaves the image entirely
+            img.addEventListener("mouseleave", () => {
+                if (isActive) {
+                    glass.style.display = "none";
+                    isActive = false;
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 4. Use scroll wheel to zoom in and out of the pane
+            img.addEventListener("wheel", (e) => {
+                if (!isActive) return;
+                e.preventDefault(); // Stop the webpage from scrolling
+                
+                const zoomSpeed = 0.15;
+                if (e.deltaY < 0) {
+                    currentZoom += zoomSpeed; // Scroll up zooms in
+                } else {
+                    currentZoom -= zoomSpeed; // Scroll down zooms out
+                }
+                
+                // Keep the zoom between 1x and 5x
+                currentZoom = Math.max(1, Math.min(currentZoom, 5)); 
+                updateGlass(e);
+            });
+
+            // Helper function to calculate position and background size
+            function updateGlass(e) {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const w = glass.offsetWidth / 2;
+                const h = glass.offsetHeight / 2;
+
+                glass.style.left = (img.offsetLeft + x - w) + "px";
+                glass.style.top = (img.offsetTop + y - h) + "px";
+                
+                glass.style.backgroundSize = (img.width * currentZoom) + "px " + (img.height * currentZoom) + "px";
+                glass.style.backgroundPosition = (w - (x * currentZoom)) + "px " + (h - (y * currentZoom)) + "px";
+            }
+        });
+    }
+
+    // Run the setup after the page fully loads
+    window.addEventListener('load', () => {
+        setupClickMagnifier(1.75); 
+    });
+    </script>
+</body>
+</html>
