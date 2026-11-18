@@ -371,3 +371,10 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+/* --- Center Project Page Figures --- */
+.project-visuals .zoom-figure {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 40px auto;
+}
