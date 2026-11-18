@@ -358,3 +358,16 @@ body {
         height: 150px;
     }
 }
+
+.quad-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.quad-grid img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
