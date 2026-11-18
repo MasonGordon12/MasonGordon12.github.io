@@ -437,3 +437,49 @@ body {
     color: #ecf0f1;
     text-decoration: underline;
 }
+
+/* --- Outcomes Matrix Table --- */
+.outcomes-table-container {
+    overflow-x: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.outcomes-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.outcomes-table th, .outcomes-table td {
+    border: 1px solid #bdc3c7;
+    padding: 15px;
+    text-align: center;
+}
+
+.outcomes-table thead th {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+/* Vertical text for the Y-Axis Project Names */
+.project-name-vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg); /* Flips it so it reads top-to-bottom */
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    font-weight: bold;
+    white-space: nowrap;
+    width: 60px;
+}
+
+.checkmark {
+    color: #27ae60;
+    font-size: 1.5em;
+    font-weight: bold;
+}
