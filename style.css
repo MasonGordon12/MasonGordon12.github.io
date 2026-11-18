@@ -462,20 +462,26 @@ body {
 .outcomes-table thead th {
     background-color: #2c3e50;
     color: white;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: bold;
-    line-height: 1.4;
+    vertical-align: bottom; /* Aligns the vertical text cleanly at the bottom */
 }
 
-/* Vertical text for the Y-Axis Project Names */
+/* Left-aligns the long outcome text */
+.outcome-description {
+    text-align: left !important;
+    font-size: 0.95em;
+    line-height: 1.5;
+    max-width: 400px;
+}
+
+/* Vertical text for the X-Axis Project Names */
 .project-name-vertical {
     writing-mode: vertical-rl;
-    transform: rotate(180deg); /* Flips it so it reads top-to-bottom */
-    background-color: #ecf0f1;
-    color: #2c3e50;
-    font-weight: bold;
+    transform: rotate(180deg);
+    padding: 20px 10px !important;
     white-space: nowrap;
-    width: 60px;
+    height: 180px; 
 }
 
 .checkmark {
