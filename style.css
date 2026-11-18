@@ -378,3 +378,37 @@ body {
     width: fit-content;
     margin: 20px auto 40px auto;
 }
+
+/* --- Sidebar Dropdown Menu --- */
+.nav-dropdown summary {
+    color: #ecf0f1;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 15px 0;
+    list-style: none; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.nav-dropdown summary:hover {
+    color: #3498db;
+}
+
+/* Hides the default browser arrow */
+.nav-dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown-content {
+    padding-left: 15px;
+    border-left: 2px solid #7f8c8d;
+    margin-left: 5px;
+}
+
+.dropdown-content a {
+    font-size: 0.95em;
+    margin: 12px 0;
+    font-weight: normal; /* Makes sub-links look slightly lighter than main links */
+}
