@@ -33,15 +33,21 @@
             <section class="project-skills">
                 <h2>Skills & Concepts Demonstrated</h2>
                 <ul>
-                    <li><strong>Communicate spatial data using appropriate visualization methods:</strong> Designed and deployed a live ESRI dashboard that translates complex air quality statistics into accessible public health information using EPA hazard color schemes.</li>
-                    <li><strong>Identify and use appropriate algorithms for real-world projects:</strong> Developed automated Python scripts (utilizing the ArcGIS API for Python) to extract API data and generate a spatial interpolation surface across the Wasatch urban corridor.</li>
-                    <li><strong>Employ responsible approaches to data science:</strong> Successfully navigated API call limitations and automated the data pipeline via GitHub Actions and OAuth 2.0, adhering to FAIR data practices by making the resulting web layers publicly accessible.</li>
+                    <li><strong>Communicate spatial data and analysis effectively to the public:</strong> Built a live, interactive ESRI dashboard to communicate complex public health and air quality hazard data.</li>
+                    <li><strong>Identify and use appropriate algorithms for real-world projects:</strong> Developed automated Python data pipelines utilizing the <code>arcgis</code> library, OAuth 2.0, and GitHub Actions to continuously pull and interpolate live API data.</li>
+                    <li><strong>Understand ethical and FAIR data practices:</strong> Made critical, real-time environmental risk data (AQI) openly accessible and easily understandable for Utah residents.</li>
+                </ul>
+
+                <h2 style="margin-top: 25px;">Programs Used & Data Sources</h2>
+                <ul>
+                    <li><strong>Programs Used:</strong> Python (<code>arcgis</code> library), GitHub Actions, ArcGIS Pro, ArcGIS Online, and ESRI Dashboards.</li>
+                    <li><strong>Data Sources:</strong> Live community sensor data (via IQAir API) and EPA Air Quality System (AQS) monitoring stations (via ESRI Living Atlas).</li>
                 </ul>
             </section>
 
             <section class="project-summary">
                 <h2>Project Summary</h2>
-                <p>Utah has long faced atmospheric pollution challenges due to its complex topography, specifically the bowl-like effect of the Salt Lake Valley which traps contaminants. As the state makes strides toward meaningful changes in air quality—such as Salt Lake City recently meeting the 2006 PM2.5 24-hour targets—having a live, accessible way for citizens to monitor the Air Quality Index (AQI) remains critical for public health.</p>
+                <p>Utah has long faced atmospheric pollution challenges due to its complex topography, specifically the bowl-like effect of the Salt Lake Valley which traps contaminants. As the state makes strides toward meaningful changes in air quality such as Salt Lake City recently meeting the 2006 PM2.5 24-hour targets having a live, accessible way for citizens to monitor the Air Quality Index (AQI) remains critical for public health.</p>
                 <p>This project involved building a fully automated, live air quality dashboard. By utilizing the IQAir API and the EPA's Air Quality System (AQS) data from the ESRI Living Atlas, Python scripts were developed to extract current data, perform spatial interpolation across the urban corridor, and update ArcGIS Online feature layers. To bypass institutional server limitations, these scripts were securely deployed via GitHub Actions using OAuth 2.0, running on a continuous schedule to feed the interactive dashboard below.</p>
             </section>
 
