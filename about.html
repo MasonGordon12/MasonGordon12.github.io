@@ -8,18 +8,21 @@
 </head>
 <body>
     <div class="layout-wrapper">
-        <!-- Sidebar Navigation (Same as index.html) -->
+        <!-- Sidebar Navigation -->
         <nav class="sidebar">
-            <h3>Navigation</h3>
             <a href="index.html">Home</a>
             <a href="about.html">About Me</a>
             
-            <h3 style="margin-top: 30px;">Defense Projects</h3>
-            <a href="biscuit-fire.html">Biscuit Fire Regrowth</a>
-            <a href="epa-analysis.html">EPA Polluting Sites</a>
-            <a href="burn-severity.html">Wildfire Burn Severity</a>
-            <a href="aqi-mapping.html">Live Utah AQI Mapping</a>
-            <a href="lidar-sfm.html">LiDAR vs. SFM Error</a>
+            <details class="nav-dropdown">
+                <summary>Defense Projects <span>▼</span></summary>
+                <div class="dropdown-content">
+                    <a href="biscuit-fire.html">Biscuit Fire Regrowth</a>
+                    <a href="epa-analysis.html">EPA Polluting Sites</a>
+                    <a href="burn-severity.html">Wildfire Burn Severity</a>
+                    <a href="aqi-mapping.html">Live Utah AQI Mapping</a>
+                    <a href="lidar-sfm.html">LiDAR vs. SFM Error</a>
+                </div>
+            </details>
         </nav>
 
         <!-- Main Content -->
