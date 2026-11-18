@@ -60,6 +60,13 @@ body {
     color: #3498db;
 }
 
+.sidebar-logo {
+    width: 85%;
+    max-width: 160px;
+    display: block;
+    margin: 0 auto 25px auto; /* Centers the logo and adds space below it */
+}
+
 /* --- Main Content Area --- */ 
 .main-content { 
     flex: 1; 
