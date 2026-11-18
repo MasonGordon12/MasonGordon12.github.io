@@ -60,15 +60,16 @@ body {
     color: #3498db;
 }
 
-/* --- Main Content Area --- */
-.main-content {
-    flex: 1;
-    max-width: 1400px;
-    margin: 40px auto;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+/* --- Main Content Area --- */ 
+.main-content { 
+    flex: 1; 
+    max-width: 1400px; 
+    margin: 40px auto 180px auto; /* Increased bottom margin from 40px to 180px */
+    background: rgba(255, 255, 255, 0.95); 
+    padding: 40px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    position: relative; /* Allows the footer to position itself relative to this box */
 }
 
 /* --- Header & Profile Pic --- */
@@ -406,13 +407,20 @@ body {
 
 /* --- Global Site Footer --- */
 .site-footer {
-    background-color: rgba(44, 62, 80, 0.95); /* Matches your dark blue sidebar */
-    color: #bdc3c7; /* Light gray text */
+    background-color: rgba(44, 62, 80, 0.95); 
+    color: #bdc3c7; 
     text-align: center;
     padding: 20px;
-    margin-top: 60px;
-    border-radius: 6px;
-    font-size: 0.85em; /* Small print */
+    border-radius: 8px;
+    font-size: 0.85em; 
+    
+    /* Breaks the footer out of the white box */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 40px; /* Creates the transparent gap below the white box */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .site-footer p {
@@ -420,7 +428,7 @@ body {
 }
 
 .site-footer a {
-    color: #3498db; /* Light blue links so they are readable on the dark background */
+    color: #3498db; 
     text-decoration: none;
     font-weight: normal;
 }
