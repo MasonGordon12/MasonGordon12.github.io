@@ -496,3 +496,24 @@ body {
     font-size: 1.5em;
     font-weight: bold;
 }
+
+/* Make vertical header links white and readable on the dark background */
+.project-name-vertical a {
+    color: white;
+    text-decoration: none;
+}
+
+.project-name-vertical a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+/* Style the short description text under each checkmark */
+.outcome-note {
+    display: block;
+    font-size: 0.8em;
+    color: #444;
+    margin-top: 6px;
+    line-height: 1.35;
+    text-align: left;
+}
