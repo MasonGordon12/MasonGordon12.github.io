@@ -36,6 +36,12 @@
                 <h1>Comparison of Structure from Motion Accuracy in Vegetated vs. Non-Vegetated Areas</h1>
             </header>
 
+            <section class="project-summary">
+                <h2>Project Summary</h2>
+                <p>Reliable Digital Elevation Model (DEM) generation is essential for modern earth science research. Currently, the two leading methods for deriving these models are Light Detection and Ranging (LiDAR) and Structure from Motion (SfM) photogrammetry. While SfM is significantly cheaper and more accessible, relying only on a standard optical camera, it is physically limited to capturing surface objects (generating a Digital Surface Model) and struggles to penetrate vegetation. Conversely, LiDAR emits active light pulses that penetrate through gaps in the canopy to reach the bare earth beneath, creating highly accurate Digital Terrain Models (DTMs).</p>
+                <p>This project quantified the limitations of SfM by comparing it against LiDAR "ground truth" across both flat and vegetated terrains near the Bonderman Rio Mesa Field Station. Drone flights were executed, Ground Control Points (GCPs) were established using RTK receivers, and highly detailed DEMs were generated from both methods. By performing DEM differencing, the analysis proved that while SfM is highly precise and consistent over flat surfaces, its accuracy deteriorates significantly in vegetated areas, demonstrating extreme outliers and a consistent elevation discrepancy of nearly -1.86 meters.</p>
+            </section>
+
             <section class="project-skills">
                 <h2>Skills & Concepts Demonstrated</h2>
                 <ul>
@@ -48,12 +54,6 @@
                     <li><strong>Programs Used:</strong> Agisoft Metashape (for SfM processing), ArcGIS Pro (for LiDAR LAS to Raster conversion and DEM differencing), and R/RStudio (for precision and error distribution analysis).</li>
                     <li><strong>Data Sources:</strong> High-resolution optical imagery (via DJI Mini), LiDAR point clouds (via RTK drone), and RTK-collected GCPs.</li>
                 </ul>
-            </section>
-
-            <section class="project-summary">
-                <h2>Project Summary</h2>
-                <p>Reliable Digital Elevation Model (DEM) generation is essential for modern earth science research. Currently, the two leading methods for deriving these models are Light Detection and Ranging (LiDAR) and Structure from Motion (SfM) photogrammetry. While SfM is significantly cheaper and more accessible, relying only on a standard optical camera, it is physically limited to capturing surface objects (generating a Digital Surface Model) and struggles to penetrate vegetation. Conversely, LiDAR emits active light pulses that penetrate through gaps in the canopy to reach the bare earth beneath, creating highly accurate Digital Terrain Models (DTMs).</p>
-                <p>This project quantified the limitations of SfM by comparing it against LiDAR "ground truth" across both flat and vegetated terrains near the Bonderman Rio Mesa Field Station. Drone flights were executed, Ground Control Points (GCPs) were established using RTK receivers, and highly detailed DEMs were generated from both methods. By performing DEM differencing, the analysis proved that while SfM is highly precise and consistent over flat surfaces, its accuracy deteriorates significantly in vegetated areas, demonstrating extreme outliers and a consistent elevation discrepancy of nearly -1.86 meters.</p>
             </section>
 
             <section class="project-visuals">
@@ -87,8 +87,8 @@
                 <div class="button-container">
                     <a href="lidar-sfm-report.pdf" class="pdf-button" target="_blank">📄 Read Full Project Report (PDF)</a>
                 </div>
-
             </section>
+
             <!-- Global Site Footer -->
             <footer class="site-footer">
                 <p><strong>Mason Gordon</strong> | Master of Science in Spatial Data Science</p>
