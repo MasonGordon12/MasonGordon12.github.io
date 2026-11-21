@@ -40,7 +40,6 @@
                 <h2>Project Summary</h2>
                 <p>As the western United States faces a higher quantity and severity of wildfires due to a changing climate, land managers and emergency response teams need better tools to predict where a fire will have its most devastating impacts. A reliable prediction model helps allocate critical time and resources effectively. This study focuses on the historic 2002 Biscuit Fire in southern Oregon and northern California, which burned nearly half a million acres across a highly diverse topographic landscape.</p>
                 <p>The goal of this project was to test multiple machine learning model types to find the most effective combination of predictor variables (topography and fuel load) for classifying burn severity. Using Landsat imagery to derive NDVI (as a proxy for vegetation/fuel) and DEMs to derive slope, aspect, and elevation, these inputs were mapped against known burn severities (dNBR) from the MTBS dataset. By iterating through various models, the study demonstrates how advanced spatial algorithms, particularly Geographic Random Forest models, significantly improve classification accuracy for complex environmental phenomena.</p>
-                <p><strong>Standard GRF vs. Supercharged GRF:</strong> While the baseline Geographic Random Forest (GRF) model used [insert baseline setup—e.g., default parameters and standard topographic/NDVI predictors], the "supercharged" GRF improved predictive performance by [insert what you changed—e.g., tuning hyperparameters, adjusting spatial bandwidths, or incorporating additional predictor variables].</p>
             </section>
 
             <section class="project-skills">
@@ -82,7 +81,9 @@
                 <!-- Figure 4 -->
                 <figure class="zoom-figure">
                     <img src="burn-fig4.png" alt="Variable Importance Comparison">
-                    <figcaption>Figure 4: Comparison of variable importance between the baseline GRF and supercharged GRF models.</figcaption>
+                    <figcaption>
+                        Figure 4: Comparison of variable importance between the baseline GRF and supercharged GRF models. The <strong>baseline GRF</strong> used 4 predictors (NDVI, elevation, slope, and aspect), while the <strong>supercharged GRF</strong> replaced NDVI with Tasseled Cap indices (Brightness, Greenness, Wetness) and added GridMET wind speed and max temperature (8 predictors total).
+                    </figcaption>
                 </figure>
                 
                 <!-- PDF Download Button -->
