@@ -43,17 +43,20 @@
                     <thead>
                         <tr>
                             <th style="text-align: left; font-size: 1.2em; padding-left: 20px;">MSSDS Learning Outcomes</th>
-                            <th class="project-name-vertical">EPA Polluting Sites</th>
-                            <th class="project-name-vertical">Biscuit Fire Regrowth</th>
-                            <th class="project-name-vertical">Wildfire Burn Severity</th>
-                            <th class="project-name-vertical">Live Utah AQI Mapping</th>
-                            <th class="project-name-vertical">LiDAR vs. SFM Error</th>
+                            <th class="project-name-vertical"><a href="epa-analysis.html">EPA Polluting Sites</a></th>
+                            <th class="project-name-vertical"><a href="biscuit-fire.html">Biscuit Fire Regrowth</a></th>
+                            <th class="project-name-vertical"><a href="burn-severity.html">Wildfire Burn Severity</a></th>
+                            <th class="project-name-vertical"><a href="aqi-mapping.html">Live Utah AQI Mapping</a></th>
+                            <th class="project-name-vertical"><a href="lidar-sfm.html">LiDAR vs. SFM Error</a></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="outcome-description"><strong>1. a)</strong> Identify and access suitable data sources for spatial projects</td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Sourced and cleaned disjointed CSVs from open-source EPA and UDEQ databases.</span>
+                            </td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -63,13 +66,22 @@
                             <td class="outcome-description"><strong>1. b)</strong> Understand how to manipulate and process spatial data, including vector, raster and imagery data</td>
                             <td></td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Extracted elevation, slope, and aspect predictors from 30m DEMs for modeling.</span>
+                            </td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Processed raw point clouds and ran DEM differencing to quantify elevation error.</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="outcome-description"><strong>2.</strong> Use appropriate database and similar technology for storing and querying spatial data</td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Built ER models and queried spatial datasets using PostgreSQL and PostGIS.</span>
+                            </td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -78,15 +90,24 @@
                         <tr>
                             <td class="outcome-description"><strong>3.</strong> Process remotely sensed imagery to address environmental or social questions</td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Evaluated 24 years of Landsat imagery to track NDVI and post-fire regrowth.</span>
+                            </td>
                             <td></td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Contrasted active (LiDAR) vs. passive (SfM drone) remote sensing over vegetation.</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="outcome-description"><strong>4. a)</strong> Be able to identify and use appropriate algorithms for real world projects</td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Applied Linear Mixed Effects Modeling (LME) and Moran’s I in R.</span>
+                            </td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -95,7 +116,10 @@
                             <td class="outcome-description"><strong>4. b)</strong> Successfully apply spatial analytical methods, including shallow and deep machine learning</td>
                             <td></td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Trained and compared six ML models, utilizing Geographic Random Forest (GRF) to predict burn severity.</span>
+                            </td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -104,7 +128,10 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Built a live, interactive ESRI dashboard to communicate public health AQI hazards.</span>
+                            </td>
                             <td></td>
                         </tr>
                         <tr>
@@ -112,7 +139,10 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><span class="checkmark">✔</span></td>
+                            <td>
+                                <span class="checkmark">✔</span>
+                                <span class="outcome-note">Made real-time environmental risk data openly accessible and easy to interpret for Utah residents.</span>
+                            </td>
                             <td></td>
                         </tr>
                     </tbody>
