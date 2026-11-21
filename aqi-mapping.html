@@ -52,4 +52,140 @@
 
                 <h2 style="margin-top: 25px;">Programs Used & Data Sources</h2>
                 <ul>
-                    <li><strong>Programs Used:</strong> Python (<code>arcgis</code> library), GitHub Actions, ArcGIS Pro,
+                    <li><strong>Programs Used:</strong> Python (<code>arcgis</code> library), GitHub Actions, ArcGIS Pro, ArcGIS Online, and ESRI Dashboards.</li>
+                    <li><strong>Data Sources:</strong> Live community sensor data (via IQAir API) and EPA Air Quality System (AQS) monitoring stations (via ESRI Living Atlas).</li>
+                </ul>
+            </section>
+
+            <section class="project-visuals">
+                <h2>Live Interactive Dashboard</h2>
+                <p style="margin-bottom: 20px; font-style: italic; color: #555;">The dashboard below is live. You can click on any of the cities, zoom into the urban corridor to view the interpolated AQI surface, and review the top 5 most and least impacted areas.</p>
+                
+                <!-- Live ESRI Dashboard Embed -->
+                <div class="iframe-container" style="margin-bottom: 40px;">
+                    <iframe 
+                        src="https://uofu.maps.arcgis.com/apps/dashboards/3fbe37b84852407cbd00bd2327a1d309" 
+                        width="100%" 
+                        height="700px" 
+                        frameborder="0" 
+                        style="border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    </iframe>
+                </div>
+
+                <h2>Static Figures</h2>
+
+                <!-- Figure 1 -->
+                <figure class="zoom-figure">
+                    <img src="aqi-fig1.jpg" alt="Dashboard in time of good air quality">
+                    <figcaption>Figure 1: Dashboard layout operating during a time of good air quality across the state. (Test data)</figcaption>
+                </figure>
+
+                <!-- Figure 2 -->
+                <figure class="zoom-figure">
+                    <img src="aqi-fig2.jpg" alt="Dashboard in time of poor or varying air quality">
+                    <figcaption>Figure 2: Dashboard operating during a time of poor or varying air quality, highlighting the dynamic statistical lists and charts. (Test data)</figcaption>
+                </figure>
+                
+                <!-- Moved PDF Button -->
+                <div class="button-container">
+                    <a href="aqi-mapping-report.pdf" class="pdf-button" target="_blank">📄 Read Full Project Report (PDF)</a>
+                </div>
+            </section>
+
+            <!-- Global Site Footer -->
+            <footer class="site-footer">
+                <p><strong>Mason Gordon</strong> | Master of Science in Spatial Data Science</p>
+                <p>Email: <a href="mailto:masongordon202@gmail.com">masongordon202@gmail.com</a> &nbsp;|&nbsp; Phone: <a href="tel:3852347030">(385) 234-7030</a></p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Click-Toggle Magnifier Script -->
+    <script>
+    function setupClickMagnifier(defaultZoom) {
+        const figures = document.querySelectorAll('.zoom-figure');
+        
+        figures.forEach(figure => {
+            const img = figure.querySelector('img');
+            if (!img) return;
+
+            const glass = document.createElement("div");
+            glass.setAttribute("class", "img-magnifier-glass");
+            figure.insertBefore(glass, img); 
+
+            let isActive = false;
+            let currentZoom = defaultZoom;
+
+            // 1. Toggle magnifier on click
+            img.addEventListener('click', (e) => {
+                isActive = !isActive;
+                if (isActive) {
+                    glass.style.display = "block";
+                    glass.style.backgroundImage = "url('" + img.src + "')";
+                    glass.style.backgroundRepeat = "no-repeat";
+                    updateGlass(e); // Position it immediately under the mouse
+                    img.style.cursor = "zoom-out"; // Change cursor to indicate click-to-close
+                } else {
+                    glass.style.display = "none";
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 2. Track mouse movement
+            img.addEventListener("mousemove", (e) => {
+                if (!isActive) return;
+                e.preventDefault();
+                updateGlass(e);
+            });
+
+            // 3. Turn off if mouse leaves the image entirely
+            img.addEventListener("mouseleave", () => {
+                if (isActive) {
+                    glass.style.display = "none";
+                    isActive = false;
+                    img.style.cursor = "zoom-in";
+                }
+            });
+
+            // 4. Use scroll wheel to zoom in and out of the pane
+            img.addEventListener("wheel", (e) => {
+                if (!isActive) return;
+                e.preventDefault(); // Stop the webpage from scrolling
+                
+                const zoomSpeed = 0.15;
+                if (e.deltaY < 0) {
+                    currentZoom += zoomSpeed; // Scroll up zooms in
+                } else {
+                    currentZoom -= zoomSpeed; // Scroll down zooms out
+                }
+                
+                // Keep the zoom between 1x and 5x
+                currentZoom = Math.max(1, Math.min(currentZoom, 5)); 
+                updateGlass(e);
+            });
+
+            // Helper function to calculate position and background size
+            function updateGlass(e) {
+                const rect = img.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const w = glass.offsetWidth / 2;
+                const h = glass.offsetHeight / 2;
+
+                glass.style.left = (img.offsetLeft + x - w) + "px";
+                glass.style.top = (img.offsetTop + y - h) + "px";
+                
+                glass.style.backgroundSize = (img.width * currentZoom) + "px " + (img.height * currentZoom) + "px";
+                glass.style.backgroundPosition = (w - (x * currentZoom)) + "px " + (h - (y * currentZoom)) + "px";
+            }
+        });
+    }
+
+    // Run the setup after the page fully loads
+    window.addEventListener('load', () => {
+        setupClickMagnifier(1.75); 
+    });
+    </script>
+</body>
+</html>
